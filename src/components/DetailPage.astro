@@ -5,6 +5,7 @@ import ContactSection from './ContactSection.astro';
 import { u } from '../lib/utils';
 import { faqSchema } from '../lib/seo';
 import { pageImage } from '../lib/pageImages';
+const fixHref = (p: string) => p.replace(/href="(\/[^"]*)"/g, (_m, h) => 'href="' + u(h) + '"');
 const { path, title, description, h1, intro, lead = [], sections = [], faqs = [], related = [], parent, name, location, service = false, legal = false } = Astro.props;
 const crumbs = [...(parent ? [{ name: parent.name, path: parent.path }] : []), { name, path }];
 const heroCrumbs = crumbs.map((c) => ({ href: c.path, label: c.name }));
@@ -17,7 +18,7 @@ const img = pageImage(h1);
   {sections.map((s, i) => (
     <section class={`sec sec-prose sec-${i % 2 ? 'a' : 'b'}`}><div class="sec-in">
       <h2>{s.h}</h2>
-      {s.ps.map((p) => <p set:html={p} />)}
+      {s.ps.map((p) => <p set:html={fixHref(p)} />)}
       {i === 0 && !legal && <figure class="sec-fig"><img src={u(img.src)} alt={img.alt} width="1200" height="896" loading="lazy" decoding="async" /><figcaption>Illustrative image, not a photo of a local job.</figcaption></figure>}
     </div></section>
   ))}
