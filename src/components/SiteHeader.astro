@@ -1,0 +1,20 @@
+---
+import { navLinks, business } from '../lib/site';
+import { phoneIcon, drop } from './Icons';
+import { u } from '../lib/utils';
+const [b1, b2, b3] = [business.city, 'Hydro Jetting', 'Pros'];
+---
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr" data-hdr>
+  <div class="hdr-in">
+    <a class="brand" href={u('/')} aria-label={business.name + ' home'}><span class="brand-ico" set:html={drop} /><span class="brand-txt">{b1}{" "}<em>{b2}</em>{" "}{b3}</span></a>
+    <button class="menu-btn" type="button" data-menu aria-expanded="false" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav" data-nav aria-label="Main navigation">
+      {navLinks.map((l) => 'children' in l ? (
+        <div class="dd"><button type="button" class="dd-btn" aria-expanded="false">{l.label} <span aria-hidden="true">&#8964;</span></button>
+          <div class="dd-menu"><a href={u(l.href)}>All {l.label.toLowerCase()}</a>{l.children.map((a) => <a href={u(a.href)}>{a.label}</a>)}</div></div>
+      ) : <a href={u(l.href)}>{l.label}</a>)}
+      <a class="btn btn-primary nav-call" href={business.phoneHref} aria-label={`Call ${business.name} at ${business.phoneDisplay}`}><span set:html={phoneIcon} />{business.phoneDisplay}</a>
+    </nav>
+  </div>
+</header>

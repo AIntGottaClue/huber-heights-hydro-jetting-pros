@@ -1,0 +1,7 @@
+---
+import { u } from '../lib/utils';
+const { items, cta = 'Learn more' } = Astro.props;
+---
+<section class="sec sec-cards"><div class="sec-in">
+  {items.map((s) => <article><h3>{s.name}</h3><p>{s.text}</p><a href={u(s.href)}>{cta} &rarr;</a></article>)}
+</div></section>

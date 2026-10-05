@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import CardSection from '../../components/CardSection.astro';
+import { neighborhoods } from '../../data/neighborhoods';
+import { u } from '../../lib/utils';
+const title = 'Huber Heights, OH Neighborhoods | Huber Heights Hydro Jetting Pros';
+const description = 'Researched local drain cleaning questions within Huber Heights, OH. Availability must be confirmed.';
+---
+<Base title={title} description={description} path="/neighborhood/" crumbs={[{ name: 'Neighborhoods', path: '/neighborhood/' }]}>
+  <Hero headline="Hydro Jetting Neighborhoods in Huber Heights, OH" intro="Drain problems are local, and so is the housing. Read the researched local-area drafts for Huber Heights." location="Neighborhoods" crumbs={[{ href: '/neighborhood/', label: 'Neighborhoods' }]} />
+  <CardSection items={neighborhoods.map((x) => ({ name: x.name, text: x.intro, href: `/neighborhood/${x.slug}/` }))} cta="Read the local draft" />
+  <ContactSection location="Neighborhoods" />
+</Base>

@@ -1,0 +1,13 @@
+---
+import RequestForm from './RequestForm.astro';
+import { business } from '../lib/site';
+const { location = 'Homepage', title = 'Describe what is happening. Start with a call.', text = 'Tell us about the affected drain, what you have noticed, and whether hydro jetting may suit the line.' } = Astro.props;
+---
+<section class="sec contact" id="contact"><div class="sec-in contact-grid">
+  <div class="contact-copy">
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <a class="btn btn-primary" href={business.phoneHref} aria-label={`Call ${business.name} at ${business.phoneDisplay}`}>{business.phoneDisplay}</a>
+  </div>
+  
+</div></section>

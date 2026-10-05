@@ -1,0 +1,1 @@
+export const skin = { name: 'lovable', heroImage: '/hero.webp', heroAlt: 'Technician hydro jetting a sewer cleanout at dusk', fontsHref: 'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&display=swap', themeColor: '#f7f6f1', wave: false } as const;

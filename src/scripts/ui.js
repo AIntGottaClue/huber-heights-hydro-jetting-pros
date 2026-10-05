@@ -1,0 +1,11 @@
+const hdr = document.querySelector('[data-hdr]');
+const menu = document.querySelector('[data-menu]');
+const nav = document.querySelector('[data-nav]');
+const dds = [...document.querySelectorAll('.dd')];
+const setDd = (dd, open) => { dd.classList.toggle('open', open); dd.querySelector('button')?.setAttribute('aria-expanded', String(open)); };
+if (menu && nav) menu.addEventListener('click', () => { const o = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(o)); if (!o) dds.forEach((d) => setDd(d, false)); });
+dds.forEach((dd) => dd.querySelector('button').addEventListener('click', () => { const o = !dd.classList.contains('open'); dds.forEach((x) => setDd(x, x === dd ? o : false)); }));
+document.addEventListener('click', (e) => dds.forEach((d) => { if (!d.contains(e.target)) setDd(d, false); }));
+nav?.addEventListener('click', (e) => { if (e.target.closest('a')) { nav.classList.remove('open'); menu?.setAttribute('aria-expanded', 'false'); } });
+const onScroll = () => hdr?.classList.toggle('scrolled', window.scrollY > 20);
+onScroll(); window.addEventListener('scroll', onScroll, { passive: true });

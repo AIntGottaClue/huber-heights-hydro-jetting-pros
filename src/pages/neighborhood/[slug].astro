@@ -1,0 +1,12 @@
+---
+import DetailPage from '../../components/DetailPage.astro';
+import { C, services } from '../../data/pages';
+import { neighborhoods } from '../../data/neighborhoods';
+export function getStaticPaths() { return neighborhoods.map((n) => ({ params: { slug: n.slug }, props: { n } })); }
+const { n } = Astro.props;
+const related = [
+  ...n.related.map((r) => ({ href: `/${C[r] && services.some((s) => s.slug === r) ? 'services' : 'guides'}/${r}/`, label: C[r].h1.replace(/ in Huber Heights, OH$/, '') })),
+  ...neighborhoods.filter((x) => x.slug !== n.slug).map((x) => ({ href: `/neighborhood/${x.slug}/`, label: x.name })),
+];
+---
+<DetailPage path={`/neighborhood/${n.slug}/`} title={n.title} description={n.description} h1={n.h1} intro={n.intro} sections={n.sections} faqs={n.faqs} sources={n.sources} related={related} parent={{ name: 'Neighborhoods', path: '/neighborhood/' }} name={n.name} service={true} />

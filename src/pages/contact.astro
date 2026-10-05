@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { business } from '../lib/site';
+import ContactSection from '../components/ContactSection.astro';
+const title = 'Contact | Huber Heights Hydro Jetting Pros';
+const description = 'Call or send a request about a drain or sewer problem in Huber Heights, Ohio. Describe what is happening and we will follow up.';
+---
+<Base title={title} description={description} path="/contact/" crumbs={[{ name: 'Contact', path: '/contact/' }]}>
+  <Hero headline="Contact Huber Heights Hydro Jetting Pros" intro="Describe the symptoms and how long they have been going on. A drain professional can tell whether hydro jetting is suitable after reviewing the line." location="Contact" crumbs={[{ href: '/contact/', label: 'Contact' }]} />
+  <section class="sec sec-prose sec-a"><div class="sec-in">
+    <p>Prefer to talk it through? Call <a href={business.phoneHref} style="text-decoration:underline">{business.phoneDisplay}</a>.</p>
+    <p>For urgent sewage backups, keep people away from the affected area and contact a qualified plumbing professional.</p>
+  </div></section>
+  <ContactSection location="Contact" />
+</Base>

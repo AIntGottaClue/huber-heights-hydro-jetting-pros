@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { C, services } from '../data/pages';
+import { neighborhoods } from '../data/neighborhoods';
+import { faqSchema } from '../lib/seo';
+import { u } from '../lib/utils';
+const home = C['/'];
+const [s1, s2, s3, s4] = home.sections;
+const faqs = home.faqs;
+const steps = [
+  { t: 'Describe the drain problem', d: 'Note which fixtures are slow, whether sewage has backed up and if a prior cleaning helped.' },
+  { t: 'Check the line', d: 'A qualified professional can locate the obstruction and assess whether the pipe can handle jetting.' },
+  { t: 'Choose the work that fits', d: 'Cleaning may help with buildup. Roots in a broken joint or a collapsed section may also need repair.' },
+];
+---
+<Base title={home.title} description={home.desc} path="/" extraSchema={[faqSchema(faqs)]}>
+  <Hero headline={home.h1} intro={home.intro} home={true} />
+  <section class="sec sec-cards"><div class="sec-in">
+    <h2>{s1.h}</h2>
+    <p>{s1.ps[0]}</p>
+    {services.map((s) => <article><h3>{s.name}</h3><p>{s.blurb}</p><a href={u(`/services/${s.slug}/`)}>Learn about this service &rarr;</a></article>)}
+  </div></section>
+  <section class="sec sec-prose sec-a"><div class="sec-in">
+    <h2>{s2.h}</h2>
+    {s2.ps.map((p) => <p set:html={p} />)}
+    <aside><strong>Built around the inside of the pipe.</strong></aside>
+    <a href={u('/guides/how-hydro-jetting-works/')}>See how hydro jetting works &rarr;</a>
+  </div></section>
+  <section class="sec sec-steps"><div class="sec-in">
+    <h2>From symptoms to a sensible next step.</h2>
+    <ol>{steps.map((s) => <li><strong>{s.t}</strong><span>{s.d}</span></li>)}</ol>
+  </div></section>
+  <section class="sec sec-prose sec-b"><div class="sec-in">
+    <h2>{s3.h}</h2>
+    <p>Local history helps frame questions. It does not confirm a pipe problem or service coverage.</p>
+    {neighborhoods.map((n) => <a href={u(`/neighborhood/${n.slug}/`)}>{n.name}</a>)}
+    <h2 style="margin-top:48px">{s4.h}</h2>
+    {s4.ps.map((p) => <p set:html={p} />)}
+    <a href={u('/guides/hydro-jetting-vs-snaking/')}>Hydro jetting vs snaking &rarr;</a>
+  </div></section>
+  <section class="sec sec-faq"><div class="sec-in">
+    <h2>Questions worth asking before hydro jetting.</h2>
+    <div class="faq">{faqs.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+  </div></section>
+  <ContactSection location="Homepage" />
+</Base>

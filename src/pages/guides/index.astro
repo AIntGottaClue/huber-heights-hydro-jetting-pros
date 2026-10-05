@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import CardSection from '../../components/CardSection.astro';
+import { guides } from '../../data/pages';
+import { u } from '../../lib/utils';
+const title = 'Hydro Jetting Guides | Huber Heights Hydro Jetting Pros';
+const description = 'Plain guides on how hydro jetting works and how it compares with snaking for drain and sewer lines in Huber Heights, Ohio.';
+---
+<Base title={title} description={description} path="/guides/" crumbs={[{ name: 'Guides', path: '/guides/' }]}>
+  <Hero headline="Hydro Jetting Guides in Huber Heights, OH" intro="Short guides to help you ask the right questions before any drain cleaning." location="Guides" crumbs={[{ href: '/guides/', label: 'Guides' }]} />
+  <CardSection items={guides.map((x) => ({ name: x.name, text: x.blurb, href: `/guides/${x.slug}/` }))} cta="Read the guide" />
+  <ContactSection location="Guides" />
+</Base>
