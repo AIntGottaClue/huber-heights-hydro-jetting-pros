@@ -20,7 +20,7 @@ const canonical = `${SITE_URL}${path}`;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content={skin.themeColor} />
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content={import.meta.env.BASE_URL === "/" ? "index, follow" : "noindex, follow"} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
     <meta property="og:title" content={title} />
@@ -37,6 +37,7 @@ const canonical = `${SITE_URL}${path}`;
     <link rel="stylesheet" href={skin.fontsHref} />
     <JsonLd data={pageSchema(path, title, description, crumbs, service)} />
     {extraSchema.map((s) => <JsonLd data={s} />)}
+    {siteConfig.ga4MeasurementId && <><script is:inline async src={'https://www.googletagmanager.com/gtag/js?id='+siteConfig.ga4MeasurementId}></script><script is:inline define:vars={{ga4:siteConfig.ga4MeasurementId}}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',ga4);</script></>}
   </head>
   <body>
     <SiteHeader />
