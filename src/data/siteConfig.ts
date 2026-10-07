@@ -4,6 +4,6 @@ export const siteConfig = {
   origin: 'https://huberheightshydrojetting.prosapp.site',
   phoneDisplay: '(877) 761-0283',
   phoneHref: '+18777610283',
-  ga4MeasurementId: '',
+  ga4MeasurementId: 'G-FZG2PGK57K',
   airchattyTrackingId: 'tk_61d238e145314251999b74fdd5c953cf',
 } as const;
