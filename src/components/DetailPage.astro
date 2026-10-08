@@ -19,7 +19,7 @@ const img = pageImage(h1);
     <section class={`sec sec-prose sec-${i % 2 ? 'a' : 'b'}`}><div class="sec-in">
       <h2>{s.h}</h2>
       {s.ps.map((p) => <p set:html={fixHref(p)} />)}
-      {i === 0 && !legal && <figure class="sec-fig"><img src={u(img.src)} alt={img.alt} width="1200" height="896" loading="lazy" decoding="async" /><figcaption>Illustrative image, not a photo of a local job.</figcaption></figure>}
+      {i === 0 && !legal && <figure class="sec-fig"><img src={u(img.src)} alt={img.alt} width="1200" height="896" loading="lazy" decoding="async" /></figure>}
     </div></section>
   ))}
   {related.length > 0 && <section class="sec sec-prose sec-a"><div class="sec-in">{related.map((r) => <a href={u(r.href)}>{r.label} &rarr;</a>)}</div></section>}

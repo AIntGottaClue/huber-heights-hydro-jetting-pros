@@ -18,7 +18,6 @@ const { headline, intro, crumbs = [], home = false, location = home ? 'Homepage'
       <a class="btn btn-primary" href={business.phoneHref} aria-label={`Call ${business.name} at ${business.phoneDisplay}`}>{business.phoneDisplay}</a>
       <a class="btn btn-ghost" href="#request-service">Request a Call</a>
     </div>
-    {home && <p class="image-note">Illustrative image, not a photo of a local job.</p>}
   </div><RequestForm location={location} /></div>
   {skin.wave && home && <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80L60 70C120 60 240 40 360 35C480 30 600 40 720 45C840 50 960 50 1080 45C1200 40 1320 30 1380 25L1440 20V80H0Z" fill="#f8fafc" /></svg>}
 </section>
